@@ -6,13 +6,13 @@ It's a little python script that manages tasks so that when you launch a big lis
 ![tasks.png](tasks.png)
 
 To use it, just copy the `taskresume.py` file and put it in your branch.
-On your main script, use it like this :
+On your main script, load tasks like this :
 ```
 from taskresume import TaskBundle
 
 taskbundle = TaskBundle(slash_task=",\n") # task manager, add arguments to overwrite format
 
-taskbundle.loadFile('test_tasks.txt') # load source file
+taskbundle.loadFile('tasks.txt') # load task list
 
 if taskbundle.hasLoadedList:
     for task in taskbundle.list :
@@ -23,5 +23,18 @@ if taskbundle.hasLoadedList:
         taskbundle.changeStatus(id, 'error') #--> error
         #taskbundle.changeStatus(id, 'yes') --> completed
         #taskbundle.changeStatus(id, 'no') --> not completed
+
+```
+To create tasks, it's the same idea :
+```
+from taskresume import TaskBundle
+
+taskbundle = TaskBundle(slash_task=",\n")
+
+taskbundle.createFile('tasks.txt')
+
+taskbundle.addTask({"args":["something", "some-other-thing"], "status":"no"}) #status = "no", when the task hasn't been launched
+
+taskbundle.saveFile()
 
 ```
